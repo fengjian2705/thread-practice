@@ -23,9 +23,9 @@ public class AccountThreadTest extends Thread {
         test();
     }
 
-    public synchronized static void test(){
+    public /*synchronized*/ static void test(){
         System.out.println("线程" + Thread.currentThread().getName() + "已启动");
-//        synchronized (demo) {
+        synchronized (AccountThreadTest.class) {// 该类型对应的 Class 对象，由于类型时固定的，因此 Class 对象也是唯一的，因此可以实现同步
 //        synchronized (new Demo()){
             // 1. 模拟从后台查询账户余额的过程
             int temp = 1000;//getBalance();
@@ -44,7 +44,7 @@ public class AccountThreadTest extends Thread {
             }
             // 3. 模拟将最新的账户余额写入到后台
 //            setBalance(temp);
-//        }
+        }
     }
 
     public static void main(String[] args) {
