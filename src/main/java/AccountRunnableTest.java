@@ -19,9 +19,10 @@ public class AccountRunnableTest implements Runnable {
     }
 
     @Override
-    public void run() {
+    public /*synchronized*/ void run() {
         System.out.println("线程" + Thread.currentThread().getName() + "已启动");
-        synchronized (demo) {
+        // 由源码可知：最终是 account 对象来调用 run 方法，因此当前正在调用的对象就是 account，也就是 this 就是 account
+        synchronized (this) {
 //        synchronized (new Demo()){
             // 1. 模拟从后台查询账户余额的过程
             int temp = getBalance();

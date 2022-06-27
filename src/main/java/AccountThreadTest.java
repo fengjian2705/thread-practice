@@ -20,11 +20,15 @@ public class AccountThreadTest extends Thread {
 
     @Override
     public void run() {
+        test();
+    }
+
+    public synchronized static void test(){
         System.out.println("线程" + Thread.currentThread().getName() + "已启动");
-        synchronized (demo) {
+//        synchronized (demo) {
 //        synchronized (new Demo()){
             // 1. 模拟从后台查询账户余额的过程
-            int temp = getBalance();
+            int temp = 1000;//getBalance();
             // 2. 模拟取款 200 元的过程
             if (temp >= 200) {
                 System.out.println("正在出钞，请稍后");
@@ -39,8 +43,8 @@ public class AccountThreadTest extends Thread {
                 System.out.println("余额不足，请核对您的账户余额 !");
             }
             // 3. 模拟将最新的账户余额写入到后台
-            setBalance(temp);
-        }
+//            setBalance(temp);
+//        }
     }
 
     public static void main(String[] args) {
