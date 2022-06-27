@@ -1,3 +1,5 @@
+
+
 public class AccountRunnableTest implements Runnable {
 
     private Demo demo = new Demo();
@@ -68,4 +70,6 @@ public class AccountRunnableTest implements Runnable {
 
 class Demo {
 
+    public static void main(String[] args) {
+    }
 }
